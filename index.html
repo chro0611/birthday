@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<link rel="stylesheet" type="text/css" href="fireworks.js/style/fireworks.css">
+	<link rel="stylesheet" href="semantic/dist/semantic.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="semantic/dist/semantic.js"></script>
+	<script src="fireworks.js/script/soundmanager2-nodebug-jsmin.js"></script>
+	<script src="fireworks.js/script/fireworks.js"></script>
+	<title></title>
+	<script>
+	var shapeInterval = null;
+
+		$(function(){
+			setTimeout(function(){
+				$(".ui.segment").removeClass("loading");
+
+				shapeInterval = setInterval(function(){
+					if($(".side.active").find("h1").html() == "다")
+					{
+						clearInterval(shapeInterval);
+
+						setTimeout(nextFunction, 1000);
+					}
+					else
+					{
+						$(".shape").shape("flip right");	
+					}
+				}, 1000);
+
+			}, 2000);
+		});
+
+		function nextFunction()
+		{
+			$("div.ui.cube.shape").fadeOut(1000);
+			$(".ui.segment").addClass("inverted");
+		
+			setTimeout(startFireworks, 2000);
+		}
+
+		var index = 1;
+
+		function startFireworks()
+		{
+			if(index >= 33)
+			{
+				$(".label").html(index);
+				endcellebration();
+
+				return false;
+			}
+			createFirework(61,109,3,1,null,null,null,null,false,true);
+
+			index++;
+
+			setTimeout(startFireworks, 500);
+		}
+
+		function endcellebration()
+		{
+			$(".ui.segment").removeClass("inverted");
+
+			$(".ui.statistic").removeClass("hidden", 1000).switchClass("mini", "tiny", 1000).switchClass("tiny", "small", 1000).switchClass("small", "normal", 1000).switchClass("normal", "large", 1000).switchClass("large", "huge", 1000);
+		}
+	</script>
+	<style>
+		div.ui.cube.shape
+		{
+			position: absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			width:300px;
+			height:300px;
+			margin:auto;
+			vertical-align: middle;
+		}
+
+		div.ui.cube.shape .side
+		{
+			width: 300px;
+			height: 300px;
+		}
+
+		.ui.segment
+		{
+			transition: 1s all;
+		}
+
+		.ui.statistic
+		{
+			transition: 1s all ease-in-out;
+		}
+
+		.hidden
+		{
+			display: none !important;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="fireworks-template">
+		<div id="fw" class="firework"></div>
+		<div id="fp" class="fireworkParticle">
+			<img src="fireworks.js/image/particles.gif">
+		</div>
+	</div>
+	<div id="fireContainer">
+	</div>
+
+
+	<div class="ui container">
+		<div class="ui segment tall stacked loading center aligned" style="min-height:500px;">
+			
+			<!-- cube -->
+			<div class="ui cube shape">
+				<div class="sides">
+					<div class="side active">
+						<div class="content">
+							<div class="center">
+								<h1>생</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>일</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>축</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>하</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>합</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>니</h1> 
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="content">
+							<div class="center">
+								<h1>다</h1> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--//cube-->
+			
+			<div class="ui statistic mini hidden">
+				<div class="value">
+					<i class="icon angellist"></i>
+				</div>
+				<div class="label">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html> 		
